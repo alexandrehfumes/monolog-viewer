@@ -1,5 +1,5 @@
 secure/*
 vendor/*
-config/config.json
+app/config/config.json
 composer.phar
 composer.lock

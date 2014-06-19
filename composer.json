@@ -18,9 +18,12 @@
         "email": "support@syonix.ch"
     },
     "require": {
+        "slim/slim": "2.*",
+        "slim/views": "0.1.*",
+        "twig/twig": "1.*",
         "ddtraceweb/monolog-parser": "1.*"
     },
     "autoload": {
-        "psr-0": {"SyonixLogViewer": "src/"}
+        "psr-0": {"": "src/"}
     }
 }

@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Syonix Monolog Viewer</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta charset="utf-8">
+        <!-- Bootstrap -->
+        <link href="{{ baseUrl() }}/web/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="http://syonix.ch/res/fonts/flexo.css" rel="stylesheet" media="screen">
+        <link href="{{ baseUrl() }}/web/font-awesome/css/font-awesome.min.css" rel="stylesheet" media="screen">
+        <link href="{{ baseUrl() }}/web/css/screen.css" rel="stylesheet" media="screen">
+
+        <!-- Apple Touch Icons -->
+        <link rel="apple-touch-icon" href="{{ baseUrl() }}/web/img/touch-icon-iphone.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ baseUrl() }}/web/img/touch-icon-ipad.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ baseUrl() }}/web/img/touch-icon-iphone-retina.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ baseUrl() }}/web/img/touch-icon-ipad-retina.png">
+
+        <!-- Web App Tags -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="mobile-web-app-capable" content="yes">
+        <link rel="apple-touch-startup-image" href="{{ baseUrl() }}/web/img/touch-startup-ipad-portrait.png"    sizes="768x1004" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
+        <link rel="apple-touch-startup-image" href="{{ baseUrl() }}/web/img/touch-startup-ipad-landscape.png"     sizes="1024x748" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />
+
+
+
+        <!-- Java Scripts -->
+        <script src="{{ baseUrl() }}/web/jquery/jquery-2.0.3.min.js"></script>
+        <script src="{{ baseUrl() }}/web/jquery/jquery.stayInWebApp.min.js"></script>
+        <script src="{{ baseUrl() }}/web/retina.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("div.context").hide();
+                $.stayInWebApp();
+            });
+
+            function toggleMore(id) {
+                context = $('#context-'+id);
+                more = $('#more-'+id);
+                if(context.is(':visible')) {
+                    context.slideUp(300);
+                    more.html('<i class="fa fa-search-plus"></i> more...');
+                } else {
+                    context.slideDown(300);
+                    more.html('<i class="fa fa-search-minus"></i> less...');
+                }
+            }
+        </script>
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="{{ baseUrl() }}/web/img/favicon.ico"/>
+    </head>
+    <body>
+        <header id="header">
+          <a href="{{ baseUrl() }}"><img class="logo" src="{{ baseUrl() }}/web/img/logo.png" alt="Syonix"></a>
+            {% block header %}
+            {% endblock header %}
+        </header>
+
+        {% block navigation %}
+        {% endblock navigation %}
+
+        {% block content %}
+        {% endblock content %}
+    </body>
+</html>

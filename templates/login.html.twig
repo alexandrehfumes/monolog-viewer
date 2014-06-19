@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <div id="login">
+        <div id="loginform">
+            <form method="post">
+                <!--
+                <?php
+                    if($setupSuccessful === true) {
+                        echo '<div class="alert alert-success alert-dismissable"><b>Congratulations</b> - Your login has successfully been created. You can now sign in using the password you created.</div>';
+                    }
+                ?>
+                -->
+                <p>Please enter your password to access the log files.</p>
+                <!--
+                <?php
+                    if(isset($_POST['login']) && $_SESSION['authenticated'] !== true) {
+                        echo '<div class="alert alert-danger alert-dismissable"><b>Error</b> - Password not correct.</div>';
+                    }
+                ?>
+                -->
+                <input type="password" class="form-control" name="password" placeholder="Password">
+                <input type="submit" class="btn btn-primary btn-block" name="login" value="Sign in">
+            </form>
+        </div>
+    </div>
+{% endblock %}

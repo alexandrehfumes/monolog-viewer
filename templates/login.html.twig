@@ -3,8 +3,8 @@
 {% block content %}
     <div id="login">
         <div id="loginform">
-            <form method="post">
-                <!--
+            <form method="post" action="{{ urlFor('login') }}">
+                    <!--
                 <?php
                     if($setupSuccessful === true) {
                         echo '<div class="alert alert-success alert-dismissable"><b>Congratulations</b> - Your login has successfully been created. You can now sign in using the password you created.</div>';

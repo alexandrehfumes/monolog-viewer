@@ -1,35 +1,46 @@
+{% extends "base.html.twig" %}
+
 {% block header %}
     <div id="logout">
-        <a href="{siteUrl url='/logout'}">Logout <i class="fa fa-sign-out"></i></a>
+        <a href="{{ urlFor('logout') }}">Logout <i class="fa fa-sign-out"></i></a>
     </div>
 {% endblock header %}
 
 {% block navigation %}
     <nav id="navigation">
       <ul>
-          <?php foreach($viewer->getClients() as $slug => $name): ?>
-          <li<?php if($slug==$_SESSION['client']) echo ' class="active turquoise"'?>>
-              <a href="<?php echo BASE_URL . $slug; ?>"><?php echo $name; ?></a>
-          </li>
-          <?php endforeach; ?>
+          {% for slug, name in viewer.clients %}
+              <li><a href="{{ urlFor('log', {"client": slug, "log": viewer.logs[clientSlug].logs|keys[0]}) }}" class="{% if clientSlug == slug %}active turquoise{% endif %}">{{ name }}</a></li>
+          {% endfor %}
       </ul>
     </nav>
     <header id="logs">
       <ul>
-          <?php
-              foreach($viewer->getLogs($_SESSION['client']) as $slug => $log) {
-                  echo '<li';
-                  if($_SESSION['log'] == $slug) echo ' class="active"';
-                  echo '><a href="' . BASE_URL . $_SESSION['client'] . '/' . $slug . '">' . $log['name'] . '</a></li>';
-              }
-          ?>
+          {% for key, log in viewer.logs[clientSlug].logs %}
+              <li><a href="{{ urlFor('log', {"client": clientSlug, "log": key}) }}" class="{% if clientSlug == slug %}active{% endif %}">{{ log.name }}</a></li>
+          {% endfor %}
           <li class="pull-right"><a href="#" onclick="$('#content').animate({ scrollTop: $('#content').prop('scrollHeight') - $('#content').height() }, 500); return false;"><i class="fa fa-arrow-circle-down"></i> Jump to newest entry</a></li>
       </ul>
     </header>
 {% endblock navigation %}
 
 {% block content %}
-<div id="content">
+
+    <div id="content">
+
+    {% if viewer.hasLogs() %}
+
+        {% set thelog = viewer.getLog(client, log) %}
+
+        {% for id, line in thelog.getLines() %}
+            *
+        {% endfor %}
+
+    {% endif %}
+
+
+
+
   <?php
       if($viewer->hasLogs()) {
           $log = $viewer->getLog($_SESSION['client'], $_SESSION['log']);

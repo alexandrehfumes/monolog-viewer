@@ -105,7 +105,9 @@
 
                             <tr>
                                 <td><strong>{{ title }}</strong></td>
-                                <td>{{ context }}</td>
+                                {% for item in context %}
+                                    <td>{{ item }}</td>
+                                {% endfor %}
                             </tr>
 
                             {% endfor %}
